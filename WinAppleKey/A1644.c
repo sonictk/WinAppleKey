@@ -44,6 +44,13 @@ void ProcessA1644Buffer(BYTE* buf, ULONG size)
 			g_FakeFnActive = FALSE;
 	}
 
+	// Modify the right Cmd key to act as a RCtrl modifier instead.
+	if (*pModifier & HidRCmdMask)
+	{
+		*pModifier &= ~HidRCmdMask;
+		*pModifier |= HidRCtrlMask;
+	}
+
 	//Process optional Alt-Cmd swap
 	if (g_dwSwapAltCmd)
 	{
